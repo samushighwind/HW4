@@ -1,0 +1,2 @@
+SOURCES (urls):
+Class Scheduling to Maximize Participant Satisfaction http://www.jstor.org/stable/25062010

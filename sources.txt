@@ -3,3 +3,5 @@ SOURCES (urls):
 -Applying constraint satisfaction techniques in university timetable scheduling (1995) http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.4951
 -RUSSELL AND NORVIG
 -Preferential Course Scheduling (old article -- costs $32 for them to run their code) http://www.jstor.org/stable/25059766?seq=1#page_scan_tab_contents
+
+psuedo boolean format :http://www.cril.univ-artois.fr/PB07/solver_req.html

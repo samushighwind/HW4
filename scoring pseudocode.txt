@@ -1,0 +1,20 @@
+
+def score(sched, id):
+	int score = 0
+	for crn in sched:
+		score += rank(crn, id)
+	score += (4 - len(sched)) * 5
+	return score
+
+def rank(crn, id):
+	for request in requests:
+		if request.id == id and request.crn == crn:
+			if request.branch == 1:
+				return request.tree
+			elif request.tree is not 4:
+				return request.branch % 2 + 1
+			else return request.branch
+	
+
+requests = []
+requests contains tuples like this: (id, crn, tree, branch)

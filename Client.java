@@ -42,7 +42,11 @@ public class Client {
 		get_constraint_1(requests);
 		get_constraint_2(requests);
 	}
-
+	
+	/*
+	 * Writes the 2nd constraint to a file. This constraint ensures that courses do not exceed the course ceiling. 
+	 * Courses with a ceiling of 0 (i.e. an independent study) are not included in the constraint.
+	 */
 	private static void get_constraint_2(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {
 		System.out.println("Creating constraint 2: ensure courses do not exceed ceilings...");
 		PrintWriter writer = new PrintWriter(OUTPUT_FILE_2, "UTF-8");
@@ -52,12 +56,13 @@ public class Client {
 			String curr = "";
 			for(Request j : requests){
 				if(i.getCrn()==j.getCrn()){
-					if(!requestUsed.contains(j.getVarNum()) && !requestUsed.contains(i.getVarNum()) && i!=j){
+					if(!requestUsed.contains(j.getVarNum()) && !requestUsed.contains(i.getVarNum()) && i!=j && j.getCeil()!=0){
 						curr+="+1 x" + j.getVarNum() + " ";
 						requestUsed.add(j.getVarNum());
 					}
 				}
 			}
+			//Now, if there is a constraint, finalize it and write it to file.
 			if(curr.length()!=0){
 				curr = "+1 x" + i.getVarNum() + " " + curr;
 				curr += "<= " + i.getCeil() + ";";
@@ -67,7 +72,6 @@ public class Client {
 		}
 		writer.close();		
 		System.out.println("Done with constraint 2. Written to file " + OUTPUT_FILE_2);
-
 	}
 
 	private static void get_constraint_1(List<Request> requests) throws UnsupportedEncodingException, FileNotFoundException {

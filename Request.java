@@ -26,14 +26,23 @@ public class Request {
 	public int getCrn(){
 		return this.crn;
 	}
-	public String getSubj(){
-		return this.subj;
+    public int getTree() {
+        return this.tree;
+    }
+    public int getBranch() {
+        return this.branch;
+    }
+    public int getCeil() {
+		return this.ceiling;
 	}
 	public int getNumber(){
 		return this.number;
 	}
-
-	public int getCeil() {
-		return this.ceiling;
+    public int getSeq() {
+        return this.seq;
+    }
+	public String getSubj(){
+		return this.subj;
 	}
+	
 }

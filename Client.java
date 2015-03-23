@@ -103,5 +103,12 @@ public class Client {
 		writer.close();
 		System.out.println("Done with constraint 1. Written to file " + OUTPUT_FILE_1);
 	}
+    
+    private static void getConstraint3(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {
+        System.out.println("Creating constraint 3: ensure student is not placed in more than 4 courses...");
+		PrintWriter writer = new PrintWriter(OUTPUT_FILE_1, "UTF-8");
+        
+        
+    }
 
 }

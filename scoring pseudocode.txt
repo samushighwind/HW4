@@ -14,7 +14,15 @@ def rank(crn, id):
 			elif request.tree is not 4:
 				return request.branch % 2 + 1
 			else return request.branch
-	
+
+def rank(i):
+	request = requests.get(i)
+	if request.branch == 1:
+		return request.tree
+	elif request.tree is not 4:
+		return request.branch % 2 + 1
+	else return request.branch
+
 
 requests = []
 requests contains tuples like this: (id, crn, tree, branch)

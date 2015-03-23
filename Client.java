@@ -25,7 +25,7 @@ public class Client {
 		Scanner scan = new Scanner(new File(INPUT_FILE));
 		scan.nextLine();//skip the header line;
 		List<Request> requests = new LinkedList<Request>();
-		int i = 0;
+		int i = 1;
 		while(scan.hasNext()){
 			String[] line = scan.next().split(",");
 			int id = Integer.parseInt(line[0]);
@@ -64,15 +64,15 @@ public class Client {
 			for(Request j : requests){
 				if(i.getCrn()==j.getCrn()){
 					if(!requestUsed.contains(j.getVarNum()) && !requestUsed.contains(i.getVarNum()) && i!=j && j.getCeil()!=0){
-						curr+="+1 x" + j.getVarNum() + " ";
+						curr+="-1 x" + j.getVarNum() + " ";
 						requestUsed.add(j.getVarNum());
 					}
 				}
 			}
 			//Now, if there is a constraint, finalize it and write it to file.
 			if(curr.length()!=0){
-				curr = "+1 x" + i.getVarNum() + " " + curr;
-				curr += "<= " + i.getCeil() + ";";
+				curr = "-1 x" + i.getVarNum() + " " + curr;
+				curr += ">= " + "-" + i.getCeil() + ";";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
 				numConstraints++;
@@ -93,7 +93,7 @@ public class Client {
 			for(Request j:requests){
 				if(curr_id==j.getId()){//if same student's request
 					if(!requestUsed.contains(j.getVarNum()) && i.getSubj().equals(j.getSubj()) && i.getNumber()==j.getNumber() && i!=j){//if request is for the same subject and number
-						curr+="+1 x" + j.getVarNum() + " ";
+						curr+="-1 x" + j.getVarNum() + " ";
 						requestUsed.add(j.getVarNum());
 					}
 					
@@ -101,8 +101,8 @@ public class Client {
 				
 			}
 			if(curr.length()!=0){
-				curr += "+1 x" + i.getVarNum() + " ";
-				curr += "<= 1;";
+				curr += "-1 x" + i.getVarNum() + " ";
+				curr += ">= -1;";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
 				numConstraints++;
@@ -124,14 +124,14 @@ public class Client {
 			for(Request j:requests){
 				if(curr_id==j.getId()){//if same student's request
 					if(!requestUsed.contains(j.getVarNum()) && i!=j){
-						curr+="+1 x" + j.getVarNum() + " ";
+						curr+="-1 x" + j.getVarNum() + " ";
 						requestUsed.add(j.getVarNum());
 					}
 				}
 			}
 			if(curr.length()!=0){
-				curr += "+1 x" + i.getVarNum() + " ";
-				curr += "<= 4;";
+				curr += "-1 x" + i.getVarNum() + " ";
+				curr += ">= -4;";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
 				numConstraints++;
@@ -147,8 +147,9 @@ public class Client {
         
         String s = "min: ";
         for(Request i:requests) {
-			s += "+" + rank(i) +" x" + i.getVarNum() + " ";
+			s += rank(i) +" x" + i.getVarNum() + " ";
         }
+        s+=";";
         writer.println(s);
         
         writer.close();
@@ -156,11 +157,13 @@ public class Client {
     }
     
     private static int rank(Request req) {
+        int r;
         if(req.getBranch() == 1) {
-            return req.getTree();
+            r = req.getTree();
         } else if(req.getTree() != 4) {
-            return req.getBranch() % 2 + 1;
-        } else return req.getBranch();
+            r = req.getBranch() % 2 + 1;
+        } else r = req.getBranch() + 3;
+        return - (8 - r);
     }
 
 }

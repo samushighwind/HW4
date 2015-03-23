@@ -12,7 +12,8 @@ import java.util.Set;
  * This class creates and write the first two constraints.
  */
 public class Client {
-
+	public static int numConstraints = 0;
+	
 	final static String INPUT_FILE = "spring-2015.csv";
 	final static String OUTPUT_FILE_1 = "constraint1.txt";
 	final static String OUTPUT_FILE_2 = "constraint2.txt";
@@ -35,7 +36,7 @@ public class Client {
 			String subject = line[8];
 			int numb = Integer.parseInt(line[9].substring(0, 3)); //removes the "S" that sometimes appears.
 			char seq = line[10].charAt(0);		
-		
+			
 			requests.add(new Request(i, id, crn, tree, branch, ceil, numb, seq, subject));
 			i++;
 		}
@@ -45,6 +46,8 @@ public class Client {
 		getConstraint2(requests);
         getConstraint3(requests);
 		getConstraint4(requests);
+		System.out.println("constraint= " +numConstraints);
+		System.out.println("variable= " + requests.size());
 	}
 	
 	/*
@@ -72,6 +75,7 @@ public class Client {
 				curr += "<= " + i.getCeil() + ";";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
+				numConstraints++;
 			}
 		}
 		writer.close();		
@@ -101,6 +105,7 @@ public class Client {
 				curr += "<= 1;";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
+				numConstraints++;
 			}
 			
 		}
@@ -129,6 +134,7 @@ public class Client {
 				curr += "<= 4;";
 				requestUsed.add(i.getVarNum());
 				writer.println(curr);
+				numConstraints++;
 			}
             
         }

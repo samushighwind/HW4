@@ -1,0 +1,15 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Russell and Norvig}{2003}]{aima}
+Russell, S.~J., and Norvig, P.
+\newblock 2003.
+\newblock {\em {Artificial Intelligence: A Modern Approach}}.
+\newblock Pearson Education.
+
+\bibitem[\protect\citeauthoryear{Sampson, Freeland, and Weiss}{1995}]{darden}
+Sampson, S.~E.; Freeland, J.~R.; and Weiss, E.~N.
+\newblock 1995.
+\newblock Class scheduling to maximize participant satisfaction.
+\newblock {\em Interfaces} 25(3):pp. 30--41.
+
+\end{thebibliography}

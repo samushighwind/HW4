@@ -1,0 +1,45 @@
+A given fulfilled request’s score ranges from -1 (least desired) to -8 (most desired), or 0 for an unfulfilled request.
+
+Results for Old Webtree:
+The total score is -42625
+The average score for granted requests is -6.29802009456
+The average number of courses per student is 3.7350993377483444
+The number of students with 0 courses is 0.
+The number of students with 1 courses is 2.
+The number of students with 2 courses is 60.
+The number of students with 3 courses is 354.
+The number of students with 4 courses is 1396.
+
+Results for New Webtree without a minimum number of fulfilled requests per student:
+The total score is -43588
+The average score for granted requests is -6.47282447282
+The average number of courses per student is 3.7163355408388523
+The number of students with 0 courses is 4.
+The number of students with 1 courses is 26.
+The number of students with 2 courses is 78.
+The number of students with 3 courses is 264.
+The number of students with 4 courses is 1440.
+
+Results for New Webtree with a minimum of 2 fulfilled requests per student:
+The total score is -43610
+The average score for granted requests is -6.46169802934
+The average number of courses per student is 3.7246136865342163
+The number of students with 0 courses is 0.
+The number of students with 1 courses is 1.
+The number of students with 2 courses is 112.
+The number of students with 3 courses is 272.
+The number of students with 4 courses is 1427.
+
+Results for New Webtree with a minimum of 3 fulfilled requests per student:
+The total score is -43636
+The average score for granted requests is -6.42840306423
+The average number of courses per student is 3.746136865342163
+The number of students with 0 courses is 0.
+The number of students with 1 courses is 1.
+The number of students with 2 courses is 0.
+The number of students with 3 courses is 457.
+The number of students with 4 courses is 1354.
+
+(There was no satisfiable solution requiring each student to have a full schedule with 4 courses, given other constraints).
+
+New Webtree with additional constraint of minimum 3 fulfilled requests per student is notable, in that while granting fewer full schedules than any of the other schemes, it is able to grant both the highest average number of courses per student and the highest satisfaction score per granted course. Thus, it is easily preferred to the original Webtree scheme so long as we assume students will later be able to add additional courses in order to achieve full schedules.

@@ -19,6 +19,7 @@ public class Client {
 	final static String OUTPUT_FILE_2 = "constraint2.txt";
 	final static String OUTPUT_FILE_3 = "constraint3.txt";
 	final static String OUTPUT_FILE_4 = "constraint4.txt";
+	final static String OUTPUT_FILE_5 = "constraint5.txt";
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		
@@ -46,6 +47,7 @@ public class Client {
 		getConstraint2(requests);
         getConstraint3(requests);
 		getConstraint4(requests);
+		getConstraint5(requests);
 		System.out.println("constraint= " +numConstraints);
 		System.out.println("variable= " + requests.size());
 	}
@@ -139,7 +141,7 @@ public class Client {
             
         }
         writer.close();
-        System.out.println("Done with constraint 3. Written to file " + OUTPUT_FILE_4);
+        System.out.println("Done with constraint 3. Written to file " + OUTPUT_FILE_3);
     }
     
     private static void getConstraint4(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {
@@ -155,6 +157,35 @@ public class Client {
         
         writer.close();
         System.out.println("Done with constraint 4. Written to file " + OUTPUT_FILE_4);
+    }
+	
+    private static void getConstraint5(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {
+        System.out.println("Creating constraint 5: ensure student is not placed in less than 4 courses...");
+		PrintWriter writer = new PrintWriter(OUTPUT_FILE_5, "UTF-8");
+        
+        Set<Integer> requestUsed = new HashSet<Integer>();
+        for(Request i:requests) {
+            int curr_id = i.getId();
+			String curr = "";
+			for(Request j:requests){
+				if(curr_id==j.getId()){//if same student's request
+					if(!requestUsed.contains(j.getVarNum()) && i!=j){
+						curr+="+1 x" + j.getVarNum() + " ";
+						requestUsed.add(j.getVarNum());
+					}
+				}
+			}
+			if(curr.length()!=0){
+				curr += "+1 x" + i.getVarNum() + " ";
+				curr += ">= 4;";
+				requestUsed.add(i.getVarNum());
+				writer.println(curr);
+				numConstraints++;
+			}
+            
+        }
+        writer.close();
+        System.out.println("Done with constraint 5. Written to file " + OUTPUT_FILE_5);
     }
     
     private static int rank(Request req) {

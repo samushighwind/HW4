@@ -16,7 +16,7 @@ public class Converter {
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		String output = "";
-		Scanner sc = new Scanner(new File("spring-2015-solution.txt"));
+		Scanner sc = new Scanner(new File("spring-2015-solution-b.txt"));
 		while(sc.hasNext()){
 			output += sc.next() + " ";
 		}

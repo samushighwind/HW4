@@ -88,6 +88,7 @@ public class Converter {
 			totalScore += score(sched, requests);
 		}
 		System.out.println("The total score is " + totalScore);
+		System.out.println("The average score for granted requests is " + double(totalScore) / trueRequests.size());
 		System.out.println("The average number of courses per student is " + avgCrn(webtreeForm));
 		int[] t = totals(webtreeForm);
 		for(int k = 0; k < 5; k++) {

@@ -20,7 +20,6 @@ public class Converter {
 		while(sc.hasNext()){
 			output += sc.next() + " ";
 		}
-		System.out.println("read in file correctly...");
 		
 		//System.exit(0);
 		String[] outputs= output.split(" ");
@@ -50,7 +49,7 @@ public class Converter {
 		Set<Request> trueRequests = new HashSet<Request>();
 		for(String s : outputs){
 			s = s.trim(); //remove trailing whitespace
-			System.out.println(s); //debugging
+			//System.out.println(s); //debugging
 			if(!(s.charAt(0)==('-'))){
 				//Now, find that request in the list of requests
 				String num = s.substring(1, s.length());
@@ -59,6 +58,9 @@ public class Converter {
 			}
 		}
 		int counter = 0;
+		
+		List<String> webtreeForm = new LinkedList<String>();
+		
 		//Go through student by student and show the four (or less) classes.
 		for(int student = 1; student<=numStudents; student ++){
 			String curr = Integer.toString(student) + " ";
@@ -69,9 +71,39 @@ public class Converter {
 				}
 			}
 			System.out.println(curr.trim()); //trim the trailing whitespace.
+			webtreeForm.add(curr.trim());
 		}
-		System.out.println(trueRequests.size());
-		System.out.println(counter);
+		//System.out.println(trueRequests.size());
+		//System.out.println(counter);
+		
+		List<String> webList = new LinkedList<String>();
+		Scanner scan2 = new Scanner(new File("webtree.txt"));
+		while(scan2.hasNext()) {
+			webList.add(scan2.nextLine().trim());
+		}
+		
+		System.out.println();
+		int totalScore = 0;
+		for(String sched:webtreeForm) {
+			totalScore += score(sched, requests);
+		}
+		System.out.println("The total score is " + totalScore);
+		System.out.println("The average number of courses per student is " + avgCrn(webtreeForm));
+		int[] t = totals(webtreeForm);
+		for(int k = 0; k < 5; k++) {
+			System.out.println("The number of students with " + k + " courses is " + t[k] + ".");
+		}
+		System.out.println();
+		totalScore = 0;
+		for(String sched:webList) {
+			totalScore += score(sched, requests);
+		}
+		System.out.println("The total score for Old School Webtree is " + totalScore);
+		System.out.println("The average number of courses per student is " + avgCrn(webList));
+		t = totals(webList);
+		for(int k = 0; k < 5; k++) {
+			System.out.println("The number of students with " + k + " courses is " + t[k] + ".");
+		}
 		
 	}
 	
@@ -100,15 +132,16 @@ public class Converter {
 				return rank(i);
 			}
 		}
+		return 0;
 	}
 	
 	//Input string: "ID CRN CRN CRN CRN"
-	private static int score(String sched) {
+	private static int score(String sched, List<Request> requests) {
 		int score = 0;
 		String[] courses = sched.split(" ");
 		int id = Integer.parseInt(courses[0]);
 		for(int i = 1; i < courses.length; i++) {
-			score += rank(Integer.parseInt(courses[i]), id);
+			score += rank(id, Integer.parseInt(courses[i]), requests);
 		}
 		return score;
 	}

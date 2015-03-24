@@ -142,7 +142,8 @@ public class Client {
         System.out.println("Done with constraint 3. Written to file " + OUTPUT_FILE_4);
     }
     
-    private static void getConstraint4(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {        System.out.println("Creating constraint 4: minimize rank of all fulfilled requests...");
+    private static void getConstraint4(List<Request> requests) throws FileNotFoundException, UnsupportedEncodingException {
+		System.out.println("Creating constraint 4: minimize rank of all fulfilled requests...");
 		PrintWriter writer = new PrintWriter(OUTPUT_FILE_4, "UTF-8");
         
         String s = "min: ";
@@ -165,5 +166,4 @@ public class Client {
         } else r = req.getBranch() + 3;
         return - (8 - r);
     }
-
 }

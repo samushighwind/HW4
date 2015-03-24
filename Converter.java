@@ -27,7 +27,7 @@ public class Converter {
 		Scanner scan = new Scanner(new File(INPUT_FILE));
 		scan.nextLine();//skip the header line;
 		List<Request> requests = new LinkedList<Request>();
-		int i = 0;
+		int i = 1;
 		int numStudents = 0;
 		while(scan.hasNext()){
 			String[] line = scan.next().split(",");
@@ -60,11 +60,11 @@ public class Converter {
 		}
 		int counter = 0;
 		//Go through student by student and show the four (or less) classes.
-		for(int student = 1; student<numStudents; student ++){
+		for(int student = 1; student<=numStudents; student ++){
 			String curr = Integer.toString(student) + " ";
 			for(Request trueRequest : trueRequests){
 				if(trueRequest.getId()==student){
-					curr += trueRequest.getCrn() + " ("+trueRequest.getVarNum()+") ";
+					curr += trueRequest.getCrn() + " ";
 					counter++;
 				}
 			}
@@ -83,5 +83,51 @@ public class Converter {
 		System.exit(0);
 		return null;
 	}
-
+	
+    private static int rank(Request req) {
+        int r;
+        if(req.getBranch() == 1) {
+            r = req.getTree();
+        } else if(req.getTree() != 4) {
+            r = req.getBranch() % 2 + 1;
+        } else r = req.getBranch() + 3;
+        return - (8 - r);
+    }
+	
+	private static int rank(int id, int crn, List<Request> requests) {
+		for(Request i:requests) {
+			if(i.getId() == id && i.getCrn() == crn) {
+				return rank(i);
+			}
+		}
+	}
+	
+	//Input string: "ID CRN CRN CRN CRN"
+	private static int score(String sched) {
+		int score = 0;
+		String[] courses = sched.split(" ");
+		int id = Integer.parseInt(courses[0]);
+		for(int i = 1; i < courses.length; i++) {
+			score += rank(Integer.parseInt(courses[i]), id);
+		}
+		return score;
+	}
+	
+	private static double avgCrn(List<String> scheds) {
+		double avg = 0.0;
+		for(String sched:scheds) {
+			avg += sched.split(" ").length - 1;
+		}
+		avg /= scheds.size();
+		return avg;
+	}
+	
+	//Returns int array of length 5: #Students w/ 0 courses, # w/1 course, etc., to 4.
+	private static int[] totals(List<String> scheds) {
+		int[] t = new int[5];
+		for(String sched:scheds) {
+			t[sched.split(" ").length - 1]++;
+		}
+		return t;
+	}
 }

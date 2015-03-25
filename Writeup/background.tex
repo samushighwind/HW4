@@ -25,12 +25,20 @@ Webtree algorithm\footnote{http://www.davidson.edu/offices/registrar/course-regi
   \label{fig:webtr}
 \end{figure}
 
-Alternatively, we chose to approach this problem as a constraint
+Alternatively, we choose to approach this problem as a constraint
 satisfaction problem. A constraint satisfaction problem takes the
-inputs $Varibles$, $Domains$, and $Constraints$ \cite{aima}. We chose to
+inputs $Varibles$, $Domains$, and $Constraints$ \cite{aima}. We choose to
 specifically implement this problem as a psuedoboolean constraint
 satisfaction problem. A psuedoboolean problem has its domain limited
-to {True, False}, or {0,1}. Thus, we set up our problem as a set of
+to {True, False}, or {0,1}. An example of a pseudoboolean constraint is the
+following:
+
+\begin{equation} x_1 + x_2 + x_7 + x_8 \geq 2 \end{equation}
+
+In this example, no less than two of the variables $x_1, x_2, x_7$ and $x_8$
+must be set to true in order for the constraint to be satisfied.
+
+Thus, we set up our problem as a set of
 constraints of inequalities, and an objective function that we attempt
 to minimize. Several computer scientists have devoted time to creating
 psuedoboolean solvers and allowing the public to have full access to
@@ -42,7 +50,15 @@ given preferences in Webtree format, we must be able to assign an
 individual request a certain rank. For our purposes, we have defined
 rank of a scheduling assignment to be the sum of ranks of all the
 courses assigned in that given assignment: \begin{equation}\label{rank}Rank_{scheduling} =
-  \sum_{i=0}^{|Variables|}{rank(i)*x_i}\end{equation} 
+  \sum_{i=0}^{|Requests|}{rank(i)*x_i}\end{equation} 
+
+Where $rank(i)$ is the following for a given request $i$:
+
+If branch $\#$ of $i$ is 1: The tree $\#$ of $i$
+
+Else, if tree $\#$ of $i$ is 1, 2 or 3: The branch $\#$ of $i$
+
+Else (if tree $\#$ of $i$ is 4): The branch $\#$ of $i$ + 3\\
 
 A course is assigned a given rank depending on the tree and branch
 that it was placed in the original Webtree. If a request was in the

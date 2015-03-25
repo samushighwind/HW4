@@ -1,5 +1,13 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Berre \bgroup et al\mbox.\egroup
+  }{2010}]{sat4j}
+Berre, D.~L.; Parrain, A.; Lille, U.; and France, N.
+\newblock 2010.
+\newblock The sat4j library, release 2.2 system description.
+\newblock {\em Journal on Satisfiability, Boolean Modeling and Computation}
+  7:pp. 59--64.
+
 \bibitem[\protect\citeauthoryear{Russell and Norvig}{2003}]{aima}
 Russell, S.~J., and Norvig, P.
 \newblock 2003.

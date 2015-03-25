@@ -2,10 +2,22 @@
 \section{Experiments}
 \label{sec:expts}
 
-In this section, you should describe your experimental setup. What
-were the questions you were trying to answer? What was the
-experimental setup (number of trials, parameter settings, etc.)? What
-were you measuring? You should justify these choices when
-necessary. The accepted wisdom is that there should be enough detail
-in this section that I could reproduce your work \emph{exactly} if I
-were so motivated.
+Each variable $x_i$ represented one full Webtree request by a
+student. Thus, setting that variable true indicates that that course
+is granted to that particular student. Our constraint set consisted of
+four subsets: ensuring that each student would not receive the same
+course (of any and all sections) more than once, ensuring that each
+student would not receive more than four courses, ensuring that
+enrollment for each course fell under or equal to the course ceiling,
+and ensuring that each student received $n$ number of courses. The
+last constraint was varied from {0-4}, which allows us to treat it as
+a ``soft constraint'', as setting $n=0$ is similar to saying that
+the constraint does not need to be followed. 
+
+To create our minimization function, we subtracted our rank from 8 (so
+that a score of 7 was now the maximum), then negated. This was done
+because we want the best courses to minimize the function the greatest.
+
+
+We used Sat4j's psuedoboolean solver to solve this constraint
+satisfaction problem, a free open-source java implementation \cite{sat4j}.

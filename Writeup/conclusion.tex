@@ -2,7 +2,20 @@
 \section{Conclusions}
 \label{sec:concl}
 
-In this section, briefly summarize your paper --- what problem did you
-start out to study, and what did you find? What is the key result /
-take-away message? It's also traditional to suggest one or two avenues
-for further work, but this is optional.
+This study sought to establish a novel method for assigning courses at
+Davidson College by framing the problem as a constraint satisfaction
+problem. After a comparative analysis of the old system of Webtree and
+our new method, using a psuedoboolean SAT solver, we conclude that our
+solution assigns courses in a manner that gives more students all four
+courses (i.e. a full course-load), as well as three courses. While the
+old Webtree algorithm assigns a higher average of courses to each
+student (3.735) than our approach without minimum courses as a
+constraint (3.716), adding a constraint that requires each student to
+receive a minimum of 3 courses was found to result assigning the
+maximum average number of courses to each student
+(3.746). Additionally, while not adding constraints that require a
+minimum number of courses to be fulfilled per student resulted in a
+lower average courses per student, students can easily add more
+courses after the algorithm has run during the add/drop period. 
+
+Future research should examine...

@@ -13,7 +13,20 @@
 % or reported in tables with a $\pm$ range. The $95\%$-confidence
 % interval is a commonly reported statistic.
 
-The results from our experiment are summarized in Table ~\ref{fig:mainresults}.
+The results from our experiment are presented in Table
+~\ref{fig:mainresults}. We see the comparison between Webtree's
+algorithm and our Constraint Satisfaction pseudoboolean algorithm, for
+three different trials with a different minimum number of
+courses. Webtree assigned an average course rank of -6.30, which is
+worse than any of the average course ranks for our algorithm (recall
+that since this is a \emph{minimization} problem, a smaller rank is
+better). Our model yielded average course ranks of -6.47, -6.46. and
+-6.43 for minimum course constraints of 0, 2, and 3,
+respectively. This is unsurprising, since adding a constraint to give
+each student a minimum number of courses likely will reduce the rank
+of the courses that students are given, a sacrifice that is made in
+order to ensure students receive courses.
+
 \begin{table}[h]
 \begin{tabular}{lllll}
  & \begin{tabular}[c]{@{}l@{}}Min.\\ courses\end{tabular}
@@ -27,7 +40,7 @@ The results from our experiment are summarized in Table ~\ref{fig:mainresults}.
  &\begin{tabular}[c]{@{}l@{}}3.74\\ \\\end{tabular}
  & \begin{tabular}[c]{@{}l@{}}1396\\ \\\end{tabular} \\ 
 \begin{tabular}[c]{@{}l@{}}CSP\\ \\\end{tabular}
- & \begin{tabular}[c]{@{}l@{}}0\\ \\\end{tabular}
+ & \begin{tabular}[c]{@{}l@{}}0\\ \\\end{tabular} %
  & \begin{tabular}[c]{@{}l@{}}-6.47\\ \\\end{tabular}
  &\begin{tabular}[c]{@{}l@{}}3.72\\ \\\end{tabular}
  & \begin{tabular}[c]{@{}l@{}}1440\\ \\\end{tabular} \\ 
@@ -49,7 +62,22 @@ used in this experiment.}
 \label{fig:mainresults}
 \end{table}
 
+However, unless we add a constraint to give each student a minimum of
+three courses, Webtree assigns an average of more courses. This is a
+tradeoff that we are willing to accept, since the difference is
+trivial (Webtree assigns an average of 3.74 courses, and ours assigns
+an average of 3.72 courses), and the average rank of the courses is
+much better in our model. 
 
+Interestingly, the number of students that receive four courses
+decreases as we increase the number of courses that students are
+required to receive. As we increase the number of forced required
+courses, we take courses away from those who had all four and give
+them to those who had less than the minimum number. Even though less
+students receive four courses, the average number of courses received
+increases. Essentially, we are making a trade off that promotes more
+equality while still ensuring that students receive courses that they
+rank highly on their Webtree form. 
 
 
 % \subsection{Embedding Pictures}

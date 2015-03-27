@@ -5,20 +5,24 @@
 This study sought to establish a novel method for assigning courses at
 Davidson College by framing the problem as a constraint satisfaction
 problem. After a comparative analysis of the old system of Webtree and
-our new method, using a psuedoboolean SAT solver, we conclude that our
+our new method, using a pseudoboolean SAT solver, we conclude that our
 solution assigns courses in a manner that gives more students all four
-courses (i.e. a full course-load), as well as three courses. While the
-old Webtree algorithm assigns a higher average of courses to each
-student (3.735) than our approach without minimum courses as a
-constraint (3.716), adding a constraint that requires each student to
-receive a minimum of 3 courses was found to result assigning the
-maximum average number of courses to each student
-(3.746). Additionally, while not adding constraints that require a
-minimum number of courses to be fulfilled per student resulted in a
-lower average courses per student, students can easily add more
-courses after the algorithm has run during the add/drop period. 
+courses (i.e. a full course-load), while giving all students more
+courses that they want than Webtree does. Our best end state was
+obtained in the absence of the additional constraint on minimum number
+of courses granted for each student. Without this state, our model
+performs better than Webtree by providing a just and appealing
+distribution of courses for all students. Therefore, if an overhaul to
+the method of assigning courses at Davidson College is in the near
+future, framing it as a constraint satisfaction problem should be a
+strong consideration of the Office of the Registrar. 
 
-Future research should examine what sorts of additional constraints or constraint
+
+Future research should establish a new method and interface for
+ranking courses. It should be simplified from the current state, while
+still giving students a chance to customize different contingencies
+depending on whether or not they receive certain courses. Importantly, more
+research should examine what sorts of additional constraints or constraint
 modifications could result in improved scheduling, as well as suitable ways to
 incorporate desired hierarchical schemas such as class and lottery number. Does
 there exist a constraint schema that can supply a higher number of completed
